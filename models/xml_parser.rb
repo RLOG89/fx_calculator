@@ -10,9 +10,9 @@ class XmlParser
 
   def xpath_generator(date = nil)
     if !date
-     "//Envelope/Cube/Cube/@time"
+     @data.xpath("//Envelope/Cube/Cube/@time")
     else 
-     "//Envelope/Cube/Cube[@time='#{date}']/Cube[@currency]"
+     @data.xpath("//Envelope/Cube/Cube[@time='#{date}']/Cube[@currency]")
     end
   end
 
