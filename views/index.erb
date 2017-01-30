@@ -1,0 +1,33 @@
+<div id="title">
+  <h1>
+    FX Calculator
+  </h1>  
+</div>
+
+<div id="form">
+  <form method="post">
+    Date:
+    <select name="date" required="true"  />
+    <% @dates.each do |d| %>
+    <option value="<%= Date.parse(d).strftime("%d/%m/%Y") %>"> <% Date.parse(d).strftime("%d/%m/%Y")  %> </option>
+    <% end %>
+  </select>
+  Amount:
+  <input name="amount" value="100" type="number" required="true" min="1" step="1"/> 
+  From:
+  <select name="currency_from" required="true">
+    <option default>From CCY</option>
+    <% @currency.each_key do |key| %>
+    <option value="<%= key %>"> <%= key %> </option>    
+    <% end %>
+  </select>
+  To:  
+  <select name="currency_to" required="true">
+    <option default>To CCY</option>
+    <% @currency.each_key do |key| %>
+    <option value="<%= key %>"> <%= key %> </option>    
+    <% end %>
+  </select>
+  <p><input type="submit" name="convert" value="Convert"></p>
+</form>
+</div>
