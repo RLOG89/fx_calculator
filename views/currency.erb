@@ -12,14 +12,14 @@ Amount:
 <input name="amount" value="100" type="number" required="true" min="1" step="1"/> 
 From:
 <select name="currency_from" required="true">
-  <option default>From CCY</option>
+  <option selected="selected" disabled="disabled" value="">From CCY</option>
   <% @currency.each_pair do |key, value| %>
   <option value="<%= value %>"> <%= key %> </option>    
   <% end %>
 </select>
 To:  
 <select name="currency_to" required="true">
-  <option default>To CCY</option>
+  <option selected="selected" disabled="disabled" value="">To CCY</option>
   <% @currency.each_pair do |key, value| %>
   <option value="<%= value %>"> <%= key %> </option>    
   <% end %>
@@ -27,3 +27,4 @@ To:
 <p><input type="submit" name="convert" value="Convert"></p>
 </form>
 </div>
+
