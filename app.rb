@@ -5,23 +5,34 @@ require_relative './models/dates'
 require_relative './models/currency'
 require_relative './models/fx_calculation'
 
+enable :sessions
+
 get '/' do
   dates = Dates.new('data/rates.xml')
-  currency = Currency.new('data/rates.xml')
   @dates = dates.get_dates
-  @currency = currency.get_currency_list_at("2017-01-27")
   erb :index
 end
 
 post '/' do
-  @date = params[:date]
-  @amount = params[:amount]
-  @currency_from = params[:currency_from]
-  @currency_to = params[:currency_to]
-  @conversion = Fx_calculation.calculate_rate(@amount.to_f, @currency_from.to_f, @currency_to.to_f)
-  redirect to '/conversion'
+  @@date = params[:date]
+  redirect to '/currency'
 end 
 
+get '/currency' do
+  currency = Currency.new('data/rates.xml')
+  @currency = currency.get_currency_list_at(@@date)
+  erb :currency
+end
+
+post '/currency' do
+  @@amount = params[:amount]
+  @@currency_from = params[:currency_from]
+  @@currency_to = params[:currency_to]
+  redirect to '/conversion'
+end
+
 get '/conversion' do
+  conversion = FxCalculation.new
+  @conversion = conversion.calculate_rate(@@amount.to_i, @@currency_from, @@currency_to)
   erb :conversion 
 end
