@@ -8,8 +8,8 @@
   <form method="post">
     Date:
     <select name="date" required="true"  />
-    <% @dates.each do |d| %>
-    <option value="<%= Date.parse(d).strftime("%d/%m/%Y") %>"> <% Date.parse(d).strftime("%d/%m/%Y")  %> </option>
+    <% @dates.each_pair do |key, value| %>
+    <option value="<%= key %>"> <%= value %> </option>    
     <% end %>
   </select>
   Amount:
@@ -17,15 +17,15 @@
   From:
   <select name="currency_from" required="true">
     <option default>From CCY</option>
-    <% @currency.each_key do |key| %>
-    <option value="<%= key %>"> <%= key %> </option>    
+    <% @currency.each_pair do |key, value| %>
+    <option value="<%= value %>"> <%= key %> </option>    
     <% end %>
   </select>
   To:  
   <select name="currency_to" required="true">
     <option default>To CCY</option>
-    <% @currency.each_key do |key| %>
-    <option value="<%= key %>"> <%= key %> </option>    
+    <% @currency.each_pair do |key, value| %>
+    <option value="<%= value %>"> <%= key %> </option>    
     <% end %>
   </select>
   <p><input type="submit" name="convert" value="Convert"></p>

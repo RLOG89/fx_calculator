@@ -3,15 +3,16 @@ require_relative './xml_parser.rb'
 
 class Currency
 
+  attr_reader :rates
+
   def initialize(rates)
-    # rates = 'data/rates.xml'
     @input = XmlParser.new(rates)
   end
 
   def get_currency_list_at(date = Date.today)
     currencies = Hash.new
-    unparsed_list = @input.xpath_generator(date)
-    unparsed_list.each do |curr|
+    parsed_list = @input.xpath_generator(date)
+    parsed_list.each do |curr|
       key = (curr.attribute('currency')).to_s  
       value = (curr.attribute('rate')).to_s
       currencies[key] = value
@@ -20,3 +21,5 @@ class Currency
   end
 
 end
+
+#TODO make Date.today revert to latest date if date.today not available
