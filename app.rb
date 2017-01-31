@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/contrib/all'
 require_relative './models/xml_parser'
@@ -33,6 +35,6 @@ end
 
 get '/conversion' do
   conversion = FxCalculation.new
-  @conversion = conversion.calculate_rate(@@amount.to_i, @@currency_from, @@currency_to)
+  @conversion = conversion.calculate_rate(@@amount.to_f, @@currency_from, @@currency_to)
   erb :conversion 
 end
