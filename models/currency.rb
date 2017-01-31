@@ -21,5 +21,3 @@ class Currency
   end
 
 end
-
-#TODO make Date.today revert to latest date if date.today not available
