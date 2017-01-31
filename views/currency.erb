@@ -6,10 +6,8 @@
 
 <div id="form">
   <form method="post">
-Date <br>
-<select name = selected_date >
-  <option value="<%= @@date %>"></option>
-</select>
+<p>Date:
+<input type="text" name="curr_date" value="<%= Date.parse(@@date).strftime("%d/%m/%Y") %>" readonly /> </p>
 Amount:
 <input name="amount" value="100" type="number" required="true" min="1" step="1"/> 
 From:
