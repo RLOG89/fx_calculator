@@ -8,16 +8,15 @@ class Dates
   end
 
   def get_dates
-    dates = Array.new
+    dates = Hash.new
     parsed_list = @input.xpath_generator
     parsed_list.each do |d|
-      dates.push(d.to_s)
-  end
+      key = (d.attribute('time')).to_s
+      v = (d.attribute('time')).to_s
+      value = Date.parse(v).strftime("%d/%m/%Y")
+      dates[key] = value
+    end
     return dates
-  end
-
-  def parse_date(date)
-    Date.parse(date).strftime("%d/%m/%Y")
   end
 
 end
